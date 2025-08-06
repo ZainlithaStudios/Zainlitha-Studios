@@ -1,0 +1,787 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAINLITHA Studios - Reimagining African Narratives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+            nav:hover {
+                background: rgba(0, 0, 0, 0.95);
+            }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+            .nav-links a {
+                color: #ffffff;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                position: relative;
+                padding: 0.5rem 1rem;
+            }
+
+                .nav-links a:hover {
+                    color: #00ffff;
+                    transform: translateY(-2px);
+                }
+
+                .nav-links a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    width: 0;
+                    height: 2px;
+                    background: linear-gradient(45deg, #00ffff, #ff00ff);
+                    transition: all 0.3s ease;
+                    transform: translateX(-50%);
+                }
+
+                .nav-links a:hover::after {
+                    width: 80%;
+                }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate, slideInUp 1s ease-out;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #00ffff;
+            font-weight: 600;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #E8E8E8;
+            font-style: italic;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            }
+
+            to {
+                text-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #cccccc;
+            line-height: 1.6;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            border-radius: 50px;
+            color: #000000;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 0.5rem;
+        }
+
+            .cta-button.secondary {
+                background: linear-gradient(45deg, #ff00ff, #ffff00);
+                color: #000000;
+            }
+
+            .cta-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            }
+
+            .cta-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                transition: left 0.5s;
+            }
+
+            .cta-button:hover::before {
+                left: 100%;
+            }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+            .section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+                text-align: center;
+                background: linear-gradient(45deg, #00ffff, #ffffff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                opacity: 0;
+                animation: fadeIn 1s ease-out forwards;
+            }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+            .game-card.flagship {
+                grid-column: 1 / -1;
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .game-card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .game-card:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .game-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            }
+
+            .game-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(45deg, #00ffff, #ff00ff);
+            }
+
+            .game-card h3 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+                color: #00ffff;
+            }
+
+            .game-card .game-meta {
+                display: flex;
+                gap: 1rem;
+                margin-bottom: 1rem;
+                flex-wrap: wrap;
+            }
+
+        .game-meta span {
+            background: rgba(0, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #00ffff;
+        }
+
+        .game-card p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease-out forwards;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+            .team-member:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .team-member:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .team-member:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+
+            .team-member:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+
+            .team-member:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+
+            .team-member:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: scale(1.05);
+            }
+
+            .team-member .avatar {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, #00ffff, #ff00ff);
+                margin: 0 auto 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                color: #000000;
+                font-weight: bold;
+            }
+
+            .team-member h3 {
+                color: #00ffff;
+                margin-bottom: 0.5rem;
+            }
+
+            .team-member .role {
+                color: #ff00ff;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+            .about-card h3 {
+                color: #00ffff;
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+            }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: #00ffff;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                color: #ffffff;
+                font-size: 1rem;
+            }
+
+                .form-group input:focus,
+                .form-group textarea:focus {
+                    outline: none;
+                    border-color: #00ffff;
+                    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+                }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-card.flagship {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ZAINLITHA Studios</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Work With Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ZAINLITHA Studios</h1>
+            <div class="hero-subtitle">Reimagining African Narratives In The Digital World</div>
+            <div class="hero-tagline">A youth-led, women-owned game studio blending culture, creativity, and code.</div>
+            <div class="cta-buttons">
+                <a href="#games" class="cta-button">🎮 Explore Our Games</a>
+                <a href="#contact" class="cta-button secondary">💌 Work With Us</a>
+                <a href="#about" class="cta-button">📰 Join Our Movement</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="section">
+        <h2>Our Games</h2>
+
+        <div class="game-card">
+            <h3>Anele</h3>
+            <div class="game-meta">
+                <span>Arena Brawler</span>
+                <span>2.5D Fighting</span>
+                <span>PC</span>
+            </div>
+            <p><strong>Story:</strong> Anele is a young woman fighting in illegal pit arenas of a dystopian slum to rescue her kidnapped parents. Her fight exposes the broken systems and silent brutality of life in "The Stack."</p>
+            <p><strong>Style:</strong> Afro-grit aesthetic with 1v1 arena brawling, improvised weapons, and finishers tied to African music genres like Amapiano, gqom, and industrial house.</p>
+            <p><strong>Impact:</strong> Rooted in South African life - taxi slang, slum survival, underground culture. A bold narrative about class, survival, and the power of resistance. #JointheMove</p>
+        </div> 
+
+        <div class="games-grid">
+            <div class="game-card flagship">
+                <h3>Zizi's Quest: Spirits of the Land</h3>
+                <div class="game-meta">
+                    <span>2D/3D Adventure</span>
+                    <span>PC & Console</span>
+                    <span>Flagship Title</span>
+                </div>
+                <p><strong>Setting:</strong> A post-apocalyptic South Africa that blends cultural heritage and supernatural elements.</p>
+                <p><strong>Story:</strong> Follow Zizi, a young woman guided by ancestral voices, as she journeys through iconic South African landscapes from the Drakensberg mountains to abandoned Johannesburg. She must reclaim lost knowledge, reconnect with her roots, and restore balance to a fractured land.</p>
+                <p><strong>What Makes It Special:</strong> Authentic South African traditions woven into gameplay, story-first design that prioritizes narrative over mechanics, and emotional reflection on cultural loss, resilience, and identity. This game serves as both entertainment and cultural preservation.</p>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About ZAINLITHA Studios</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>Our Mission</h3>
+                <p>To reimagine and preserve African cultural heritage through innovative storytelling and digital gaming, while empowering young creators in Africa.</p>
+            </div>
+            <div class="about-card">
+                <h3>Our Vision</h3>
+                <p>To become the leading African studio in culturally rooted, globally recognized video games that inspire learning, identity, and pride.</p>
+            </div>
+            <div class="about-card">
+                <h3>Company Info</h3>
+                <p>
+                    <strong>Legal Name:</strong> Zainlitha Studios (Pty) Ltd<br>
+                    <strong>Type:</strong> Creative Tech & Game Development Studio<br>
+                    <strong>Founded:</strong> 2025<br>
+                    <strong>Location:</strong> Cape Town, South Africa (Remote Operations)<br>
+                    <strong>Certification:</strong> B-BBEE Level 1 Certificate ✅
+                </p>
+            </div>
+            <div class="about-card">
+                <h3>Our Approach</h3>
+                <p>We sit at the intersection of entertainment, education, and digital heritage preservation. Our games blend African narratives with modern gaming technology to create experiences that are both commercially viable and culturally significant.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="avatar">Z</div>
+                <h3>Zainap Van Blerck</h3>
+                <div class="role">Programmer, Team Leader</div>
+                <p>Interactive Storytelling Specialist leading programming and technical design with a focus on narrative systems.</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">L</div>
+                <h3>Linnah Precious Msiza</h3>
+                <div class="role">Writer, Research & Admin Lead</div>
+                <p>Develops lore, handles worldbuilding, documentation, and business coordination.</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">T</div>
+                <h3>Thandolwethu Mabaso</h3>
+                <div class="role">Visual Designer, Co-Programmer</div>
+                <p>Asset Specialist who designs the visual language of the studio's projects and handles co-development.</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">Z</div>
+                <h3>Zaheer</h3>
+                <div class="role">Graphic Designer</div>
+                <p>Creates visual identity and marketing materials for our games and studio brand.</p>
+            </div>
+            <div class="team-member">
+                <div class="avatar">E</div>
+                <h3>Edmond Shange</h3>
+                <div class="role">Sound Design & Social Media Lead</div>
+                <p>SOFTWARE DEVELOPER </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Work With Us</h2>
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <p style="font-size: 1.2rem; color: #00ffff; margin-bottom: 1rem;">We're looking for partners who believe in the future of African storytelling.</p>
+            <p style="color: #cccccc;">Whether it's helping us travel to expos, fund tools, or collaborate on outreach — we're building something timeless.</p>
+        </div>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="organization">Organization (Optional)</label>
+                    <input type="text" id="organization" name="organization">
+                </div>
+                <div class="form-group">
+                    <label for="message">How can we collaborate?</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your interest in partnerships, investments, collaborations, or how you'd like to support African game development..." required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ZAINLITHA Studios (Pty) Ltd. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; color: #00ffff;">Reimagining African Narratives In The Digital World</p>
+    </footer>
+
+    <script>
+        // Enhanced particle animation with African-inspired colors
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 60;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+
+                // Original color palette
+                const colors = ['rgba(0, 255, 255, 0.7)', 'rgba(255, 0, 255, 0.7)', 'rgba(255, 255, 0, 0.7)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.boxShadow = `0 0 6px ${colors[Math.floor(Math.random() * colors.length)]}`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            createParticles();
+
+            // Observe sections for animations
+            document.querySelectorAll('.section h2, .game-card, .team-member, .contact-form').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your interest in ZAINLITHA Studios! We\'ll get back to you soon to discuss potential collaboration opportunities.');
+            this.reset();
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Enhanced hover effects
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.background = 'rgba(0, 255, 255, 0.1)';
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 255, 255, 0.3)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.background = 'rgba(255, 255, 255, 0.1)';
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
