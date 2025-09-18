@@ -493,6 +493,22 @@
             margin-top: 5rem;
         }
 
+        .social-media {
+            margin-top: 1rem;
+        }
+
+        .social-media a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #ff00ff;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -564,6 +580,7 @@
 
         <div class="game-card">
             <h3>Anele</h3>
+            <img src="C:\Users\dread\Downloads\30ba4876-f769-44cd-bbe0-a0b8e3a57623.JPG" alt="Placeholder Image">
             <div class="game-meta">
                 <span>Arena Brawler</span>
                 <span>2.5D Fighting</span>
@@ -572,7 +589,7 @@
             <p><strong>Story:</strong> Anele is a young woman fighting in illegal pit arenas of a dystopian slum to rescue her kidnapped parents. Her fight exposes the broken systems and silent brutality of life in "The Stack."</p>
             <p><strong>Style:</strong> Afro-grit aesthetic with 1v1 arena brawling, improvised weapons, and finishers tied to African music genres like Amapiano, gqom, and industrial house.</p>
             <p><strong>Impact:</strong> Rooted in South African life - taxi slang, slum survival, underground culture. A bold narrative about class, survival, and the power of resistance. #JointheMove</p>
-        </div> 
+        </div>
 
         <div class="games-grid">
             <div class="game-card flagship">
@@ -628,7 +645,7 @@
                 <div class="avatar">Z</div>
                 <h3>Zainap Van Blerck</h3>
                 <div class="role">Team Leader Game Dev Director </div>
-                <p>Interactive Storytelling Specialist leading programming and technical design with a focus on narrative systems.</p>
+                <p>Team leader, programming and technical design with a focus on narrative systems.</p>
                 <h3><a href="https://www.linkedin.com/in/zainap-van-blerck-928277251?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" style="color: #00ffff; text-decoration: none;">Linkedin</a></h3>
             </div>
             <div class="team-member">
@@ -670,7 +687,7 @@
             <p style="color: #cccccc;">Whether it's helping us travel to expos, fund tools, or collaborate on outreach — we're building something timeless.</p>
         </div>
         <div class="contact-form">
-            <form>
+            <form action="mailto:dreadynerdy@gmail.com" method="post" enctype="text/plain">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -696,6 +713,14 @@
     <footer>
         <p>&copy; 2025 ZAINLITHA Studios (Pty) Ltd. All rights reserved.</p>
         <p style="margin-top: 0.5rem; color: #00ffff;">Reimagining African Narratives In The Digital World</p>
+        <div class="social-media">
+
+            <a href="https://www.youtube.com/@ZainlithaStudios-g8g" target="_blank">YouTube</a>
+            <a href="https://www.linkedin.com/in/zainlitha-studios-183a13382/" target="_blank">LinkedIn</a>
+            <a href="https://x.com/ZAINLITHA" target="_blank">X</a>
+            <a href="https://www.facebook.com/share/14Jb4zKxeGX/?mibextid=wwXIfr" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/zainlitha_studios?utm_source=qr&igsh=cWJ3d2piZGRmNmtp" target="_blank">Instagram</a>
+        </div>
     </footer>
 
     <script>
@@ -759,12 +784,7 @@
             });
         });
 
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Thank you for your interest in ZAINLITHA Studios! We\'ll get back to you soon to discuss potential collaboration opportunities.');
-            this.reset();
-        });
+
 
         // Parallax effect for hero section
         window.addEventListener('scroll', function () {
